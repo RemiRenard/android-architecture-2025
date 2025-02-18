@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Ping</string>
+    <string name="auth_title">Welcome to</string>
+
+    <!-- Login Screen -->
+    <string name="login_title">Login</string>
+    <string name="login_field_username">Username</string>
+    <string name="login_field_username_error_msg">Can\'t be blank</string>
+    <string name="login_field_password">Password</string>
+    <string name="login_field_password_error_msg">Insecure password</string>
+    <string name="login_btn_text">Login</string>
+    <string name="login_go_to_create_account_title">New to Ping?</string>
+    <string name="login_go_to_create_account_subtitle">Register</string>
+    <!-- End Login Screen -->
+
+    <!-- Create account Screen -->
+    <string name="create_account_title">New account</string>
+    <string name="create_account_field_username">Username</string>
+    <string name="create_account_field_username_error_msg">Can\'t be blank</string>
+    <string name="create_account_field_password">Password</string>
+    <string name="create_account_field_password_error_msg">Insecure password</string>
+    <string name="create_account_field_confirm_password">Confirm your password</string>
+    <string name="create_account_field_confirm_field_password_error_msg">Password don\'t match</string>
+    <string name="create_account_btn_text">Register</string>
+    <string name="create_account_go_to_login_title">Already have an account?</string>
+    <string name="create_account_go_to_login_subtitle">Login</string>
+    <!-- End Create account Screen -->
+
+    <!-- Errors -->
+    <string name="no_internet">Please verify your internet connection</string>
+    <string name="server_error">Oops, something went wrong. Please try again.</string>
+    <string name="unknown_error">An unknown error occurred</string>
+    <string name="not_found">Not Found</string>
+    <string name="error_disk_full">Failed to save the item because your device\'s disk is full</string>
+    <string name="error_disk_request">Error with the local database</string>
+    <string name="http_error_400">Bad Request</string>
+    <string name="http_error_401">Unauthorized</string>
+    <string name="http_error_409">Conflict</string>
+    <string name="http_error_422">Unprocessable Entity</string>
+    <string name="http_error_503">Bad Request</string>
+    <!-- End Errors -->
+
+    <!-- Notifications -->
+    <string name="default_channel_id">1</string>
+    <string name="default_channel_name">Chat notification</string>
+    <!-- End Notifications -->
+</resources>
