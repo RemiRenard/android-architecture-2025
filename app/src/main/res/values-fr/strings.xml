@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ping</string>
+    <string name="auth_title">Welcome to</string>
+
+    <!-- Écran de connexion -->
+    <string name="login_title">Connexion</string>
+    <string name="login_field_username">Nom d\'utilisateur</string>
+    <string name="login_field_username_error_msg">Ne peut pas être vide</string>
+    <string name="login_field_password">Mot de passe</string>
+    <string name="login_field_password_error_msg">Mot de passe peu sécurisé</string>
+    <string name="login_btn_text">Se connecter</string>
+    <string name="login_go_to_create_account_title">Nouveau sur Captain Blink ?</string>
+    <string name="login_go_to_create_account_subtitle">S\'inscrire</string>
+    <!-- Fin Écran de connexion -->
+
+    <!-- Bottom bar -->
+    <string name="bottom_bar_home">Accueil</string>
+    <string name="bottom_bar_cv">CV</string>
+    <!-- End bottom bar -->
+
+    <!-- Ecran de création de compte -->
+    <string name="create_account_title">Nouveau compte</string>
+    <string name="create_account_field_username">Nom d\'utilisateur</string>
+    <string name="create_account_field_username_error_msg">Ne peut pas être vide</string>
+    <string name="create_account_field_password">Mot de passe</string>
+    <string name="create_account_field_password_error_msg">Mot de passe peu sécurisé</string>
+    <string name="create_account_field_confirm_password">Confirmer votre mot de passe</string>
+    <string name="create_account_field_confirm_field_password_error_msg">Les mots de passe ne correspondent pas</string>
+    <string name="create_account_btn_text">S\'inscrire</string>
+    <string name="create_account_go_to_login_title">Vous avez déjà un compte ?</string>
+    <string name="create_account_go_to_login_subtitle">Se connecter</string>
+    <!-- Fin Écran de création de compte -->
+
+    <!-- Écran des paramètres -->
+    <string name="settings_title">Paramètres</string>
+    <string name="settings_color_system">Couleurs système</string>
+    <string name="settings_color_switch_dark_mode">Mode sombre</string>
+    <string name="settings_color_switch_light_mode">Mode clair</string>
+    <string name="settings_customize_colors">Personnalisez la couleur de l\'application</string>
+    <string name="settings_replay_tutorial">Revoir le tutoriel</string>
+    <string name="settings_language_label">Langue</string>
+    <string name="settings_logout">Déconnexion</string>
+    <!-- Fin Écran des paramètres -->
+
+    <!-- Écran d'accueil -->
+    <string name="home_title">Bienvenue,\n%1$s</string>
+    <string name="home_add_device">Ajouter un équipement</string>
+    <string name="dialog_detele_device_title">Voulez vous vraiment supprimer ce produit?</string>
+    <string name="dialog_detele_device_confirm">Oui</string>
+    <string name="dialog_detele_device_dismiss">Non</string>
+    <!-- Fin Écran d'accueil -->
+
+    <!-- Erreurs -->
+    <string name="no_internet">Veuillez vérifier votre connexion internet</string>
+    <string name="server_error">Oups, quelque chose s\'est mal passé. Veuillez réessayer.</string>
+    <string name="unknown_error">Une erreur inconnue s\'est produite</string>
+    <string name="not_found">Non trouvé</string>
+    <string name="error_disk_full">Échec de l\'enregistrement de l\'élément, car l\'espace disque de votre appareil est plein</string>
+    <string name="error_disk_request">Erreur avec la base de données locale</string>
+    <string name="http_error_400">Mauvaise requête</string>
+    <string name="http_error_401">Non autorisé</string>
+    <string name="http_error_409">Conflit</string>
+    <string name="http_error_422">Entité non traitable</string>
+    <string name="http_error_503">Mauvaise requête</string>
+    <!-- Fin des erreurs -->
+</resources>

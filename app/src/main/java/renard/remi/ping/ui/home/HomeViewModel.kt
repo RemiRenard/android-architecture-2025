@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import renard.remi.ping.domain.model.Result
 import renard.remi.ping.domain.use_case.GetMeUseCase
-import renard.remi.ping.domain.use_case.LogoutUseCase
 import renard.remi.ping.domain.use_case.UpdateFcmTokenUseCase
 import renard.remi.ping.extension.UiText
 import renard.remi.ping.extension.asUiText
@@ -21,7 +20,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val logoutUseCase: LogoutUseCase,
     private val getMeUseCase: GetMeUseCase,
     private val updateFcmTokenUseCase: UpdateFcmTokenUseCase
 ) : ViewModel() {
@@ -39,7 +37,6 @@ class HomeViewModel @Inject constructor(
 
     fun onEvent(event: HomeEventFromUI) {
         when (event) {
-            is HomeEventFromUI.Logout -> logout()
             is HomeEventFromUI.PermissionsPushGranted -> updateFcmToken()
         }
     }
@@ -73,16 +70,9 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
-
-    private fun logout() {
-        viewModelScope.launch {
-            logoutUseCase.execute()
-        }
-    }
 }
 
 sealed interface HomeEventFromUI {
-    data object Logout : HomeEventFromUI
     data object PermissionsPushGranted : HomeEventFromUI
 }
 

@@ -6,20 +6,25 @@ import android.os.Build
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Scaffold
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -29,16 +34,18 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.serialization.Serializable
+import renard.remi.ping.R
+import renard.remi.ping.domain.model.BaseRoute
 import renard.remi.ping.domain.model.User
-import renard.remi.ping.ui.component.AppButton
 
 @Serializable
-object HomeScreenRoute
+object HomeScreenRoute : BaseRoute
 
 @Composable
 fun HomeScreen(
+    modifier: Modifier = Modifier,
     onPermissionNotificationGranted: (() -> Unit)? = null,
-    onLogoutClicked: (() -> Unit)? = null,
+    onSettingsClicked: (() -> Unit)? = null,
     events: Flow<HomeEventFromVm>? = null,
     state: State<HomeState>? = null
 ) {
@@ -74,23 +81,32 @@ fun HomeScreen(
             }
         }
     }
-
-    Scaffold { paddingValues ->
-        Column(
+    Column(
+        modifier = modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Row(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.Top
         ) {
-            Text(text = "Welcome ${state?.value?.user?.username}")
-            Spacer(Modifier.size(12.dp))
-            AppButton(
-                modifier = Modifier.fillMaxWidth(0.5F),
-                onClick = { onLogoutClicked?.invoke() },
-                isLoading = state?.value?.isLoading == true,
-                isEnabled = state?.value?.isLoading != true,
-                textBtn = "Logout"
+            Text(
+                text = context.getString(R.string.home_title, state?.value?.user?.username ?: ""),
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+            Icon(
+                modifier = Modifier
+                    .clip(CircleShape)
+                    .clickable {
+                        onSettingsClicked?.invoke()
+                    }
+                    .padding(16.dp),
+                imageVector = Icons.Default.Settings,
+                tint = MaterialTheme.colorScheme.onSurface,
+                contentDescription = ""
             )
         }
     }

@@ -21,7 +21,6 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -98,177 +97,172 @@ fun CreateAccountScreen(
         }
     }
 
-    Scaffold(
-        modifier = Modifier.fillMaxSize()
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(
-            modifier = Modifier.padding(it),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+        Spacer(modifier = Modifier.fillMaxHeight(0.1F))
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp),
+            text = stringResource(R.string.auth_title),
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Left
+        )
+        Spacer(modifier = Modifier.size(8.dp))
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp),
+            style = MaterialTheme.typography.titleMedium,
+            text = stringResource(R.string.app_name),
+            textAlign = TextAlign.Left
+        )
+        Spacer(modifier = Modifier.fillMaxHeight(0.07F))
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.BottomCenter
         ) {
-            Spacer(modifier = Modifier.fillMaxHeight(0.07F))
-            Text(
+            Card(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp),
-                text = stringResource(R.string.auth_title),
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Left
-            )
-            Spacer(modifier = Modifier.size(8.dp))
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 24.dp),
-                style = MaterialTheme.typography.titleMedium,
-                text = stringResource(R.string.app_name),
-                textAlign = TextAlign.Left
-            )
-            Spacer(modifier = Modifier.fillMaxHeight(0.07F))
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.BottomCenter
+                    .fillMaxHeight()
+                    .verticalScroll(rememberScrollState()),
+                shape = RoundedCornerShape(
+                    topEnd = 50.dp,
+                    topStart = 50.dp,
+                    bottomEnd = 0.dp,
+                    bottomStart = 0.dp
+                ),
             ) {
-                Card(
+                Spacer(modifier = Modifier.size(50.dp))
+                Text(
                     modifier = Modifier
-                        .fillMaxHeight()
-                        .verticalScroll(rememberScrollState()),
-                    shape = RoundedCornerShape(
-                        topEnd = 50.dp,
-                        topStart = 50.dp,
-                        bottomEnd = 0.dp,
-                        bottomStart = 0.dp
-                    ),
-                ) {
-                    Spacer(modifier = Modifier.size(50.dp))
-                    Text(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 24.dp),
-                        style = MaterialTheme.typography.titleSmall,
-                        fontWeight = FontWeight.ExtraLight,
-                        text = stringResource(R.string.create_account_title),
-                        textAlign = TextAlign.Center
-                    )
-                    Spacer(modifier = Modifier.size(24.dp))
-                    AppTextField(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 12.dp),
-                        value = state.value.username,
-                        label = stringResource(R.string.create_account_field_username),
-                        isError = state.value.usernameError?.asString()?.isNotBlank() == true,
-                        errorMessage = state.value.usernameError?.asString(),
-                        maxLines = 1,
-                        onNext = {
-                            localFocusManager.moveFocus(FocusDirection.Down)
-                        },
-                        trailingIcon = {
-                            Icon(
-                                Icons.Default.Person,
-                                contentDescription = stringResource(R.string.create_account_field_username),
-                            )
-                        },
-                        onValueChange = { username ->
-                            onUsernameChanged?.invoke(username)
-                        }
-                    )
-                    Spacer(modifier = Modifier.size(12.dp))
-                    AppTextField(
-                        modifier = Modifier
-                            .focusRequester(FocusRequester())
-                            .fillMaxWidth()
-                            .padding(horizontal = 12.dp),
-                        value = state.value.password,
-                        label = stringResource(R.string.create_account_field_password),
-                        isPassword = true,
-                        maxLines = 1,
-                        onNext = {
-                            localFocusManager.moveFocus(FocusDirection.Down)
-                        },
-                        trailingIcon = {
-                            Icon(
-                                Icons.Default.Lock,
-                                modifier = Modifier.clickable {
-                                    onShowPasswordClicked?.invoke()
-                                },
-                                contentDescription = stringResource(R.string.create_account_field_password)
-                            )
-                        },
-                        isError = state.value.passwordError?.asString()?.isNotBlank() == true,
-                        isTextVisible = state.value.isPasswordVisible,
-                        errorMessage = state.value.passwordError?.asString(),
-                        onValueChange = { password ->
-                            onPasswordChanged?.invoke(password)
-                        }
-                    )
-                    Spacer(modifier = Modifier.size(12.dp))
-                    AppTextField(
-                        modifier = Modifier
-                            .focusRequester(FocusRequester())
-                            .fillMaxWidth()
-                            .padding(horizontal = 12.dp),
-                        value = state.value.confirmPassword,
-                        label = stringResource(R.string.create_account_field_confirm_password),
-                        isPassword = true,
-                        maxLines = 1,
-                        onDone = {
-                            keyboardController?.hide()
-                            localFocusManager.clearFocus()
-                            onSubmit?.invoke()
-                        },
-                        trailingIcon = {
-                            Icon(
-                                Icons.Default.Lock,
-                                modifier = Modifier.clickable {
-                                    onShowConfirmPasswordClicked?.invoke()
-                                },
-                                contentDescription = stringResource(R.string.create_account_field_confirm_password)
-                            )
-                        },
-                        isError = state.value.confirmPasswordError?.asString()
-                            ?.isNotBlank() == true,
-                        isTextVisible = state.value.isConfirmPasswordVisible,
-                        errorMessage = state.value.confirmPasswordError?.asString(),
-                        onValueChange = { password ->
-                            onConfirmPasswordChanged?.invoke(password)
-                        }
-                    )
-                    Spacer(modifier = Modifier.size(30.dp))
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        AppButton(
-                            modifier = Modifier
-                                .padding(horizontal = 24.dp)
-                                .fillMaxWidth(),
-                            onClick = { onSubmit?.invoke() },
-                            isLoading = state.value.isLoading,
-                            isEnabled = !state.value.isLoading,
-                            textBtn = stringResource(R.string.create_account_btn_text)
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp),
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.ExtraLight,
+                    text = stringResource(R.string.create_account_title),
+                    textAlign = TextAlign.Center
+                )
+                Spacer(modifier = Modifier.size(24.dp))
+                AppTextField(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 12.dp),
+                    value = state.value.username,
+                    label = stringResource(R.string.create_account_field_username),
+                    isError = state.value.usernameError?.asString()?.isNotBlank() == true,
+                    errorMessage = state.value.usernameError?.asString(),
+                    maxLines = 1,
+                    onNext = {
+                        localFocusManager.moveFocus(FocusDirection.Down)
+                    },
+                    trailingIcon = {
+                        Icon(
+                            Icons.Default.Person,
+                            contentDescription = stringResource(R.string.create_account_field_username),
                         )
+                    },
+                    onValueChange = { username ->
+                        onUsernameChanged?.invoke(username)
                     }
-                    Spacer(modifier = Modifier.size(30.dp))
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        Text(
+                )
+                Spacer(modifier = Modifier.size(12.dp))
+                AppTextField(
+                    modifier = Modifier
+                        .focusRequester(FocusRequester())
+                        .fillMaxWidth()
+                        .padding(horizontal = 12.dp),
+                    value = state.value.password,
+                    label = stringResource(R.string.create_account_field_password),
+                    isPassword = true,
+                    maxLines = 1,
+                    onNext = {
+                        localFocusManager.moveFocus(FocusDirection.Down)
+                    },
+                    trailingIcon = {
+                        Icon(
+                            Icons.Default.Lock,
                             modifier = Modifier.clickable {
-                                onLoginClicked?.invoke()
+                                onShowPasswordClicked?.invoke()
                             },
-                            text = buildAnnotatedString {
-                                append(stringResource(R.string.create_account_go_to_login_title) + " ")
-                                withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                                    append(stringResource(R.string.create_account_go_to_login_subtitle))
-                                }
-                            }
+                            contentDescription = stringResource(R.string.create_account_field_password)
                         )
+                    },
+                    isError = state.value.passwordError?.asString()?.isNotBlank() == true,
+                    isTextVisible = state.value.isPasswordVisible,
+                    errorMessage = state.value.passwordError?.asString(),
+                    onValueChange = { password ->
+                        onPasswordChanged?.invoke(password)
                     }
-                    Spacer(modifier = Modifier.size(30.dp))
+                )
+                Spacer(modifier = Modifier.size(12.dp))
+                AppTextField(
+                    modifier = Modifier
+                        .focusRequester(FocusRequester())
+                        .fillMaxWidth()
+                        .padding(horizontal = 12.dp),
+                    value = state.value.confirmPassword,
+                    label = stringResource(R.string.create_account_field_confirm_password),
+                    isPassword = true,
+                    maxLines = 1,
+                    onDone = {
+                        keyboardController?.hide()
+                        localFocusManager.clearFocus()
+                        onSubmit?.invoke()
+                    },
+                    trailingIcon = {
+                        Icon(
+                            Icons.Default.Lock,
+                            modifier = Modifier.clickable {
+                                onShowConfirmPasswordClicked?.invoke()
+                            },
+                            contentDescription = stringResource(R.string.create_account_field_confirm_password)
+                        )
+                    },
+                    isError = state.value.confirmPasswordError?.asString()
+                        ?.isNotBlank() == true,
+                    isTextVisible = state.value.isConfirmPasswordVisible,
+                    errorMessage = state.value.confirmPasswordError?.asString(),
+                    onValueChange = { password ->
+                        onConfirmPasswordChanged?.invoke(password)
+                    }
+                )
+                Spacer(modifier = Modifier.size(30.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    AppButton(
+                        modifier = Modifier
+                            .padding(horizontal = 24.dp)
+                            .fillMaxWidth(),
+                        onClick = { onSubmit?.invoke() },
+                        isLoading = state.value.isLoading,
+                        isEnabled = !state.value.isLoading,
+                        textBtn = stringResource(R.string.create_account_btn_text)
+                    )
                 }
+                Spacer(modifier = Modifier.size(30.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
+                ) {
+                    Text(
+                        modifier = Modifier.clickable {
+                            onLoginClicked?.invoke()
+                        },
+                        text = buildAnnotatedString {
+                            append(stringResource(R.string.create_account_go_to_login_title) + " ")
+                            withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
+                                append(stringResource(R.string.create_account_go_to_login_subtitle))
+                            }
+                        }
+                    )
+                }
+                Spacer(modifier = Modifier.size(30.dp))
             }
         }
     }

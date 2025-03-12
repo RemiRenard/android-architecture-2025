@@ -40,11 +40,11 @@ android {
         debug {
             isMinifyEnabled = false
             isDebuggable = true
-            buildConfigField("String", "API_URL", "\"http://192.168.1.60:8080/api/\"")
+            buildConfigField("String", "API_URL", "\"http://192.168.1.61:8080/api/\"")
         }
         release {
             isMinifyEnabled = false
-            buildConfigField("String", "API_URL", "\"http://192.168.1.60:8080/api/prod/\"")
+            buildConfigField("String", "API_URL", "\"http://192.168.1.61:8080/api/prod/\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

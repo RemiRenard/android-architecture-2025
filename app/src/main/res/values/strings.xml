@@ -2,6 +2,11 @@
     <string name="app_name">Ping</string>
     <string name="auth_title">Welcome to</string>
 
+    <!-- Bottom bar -->
+    <string name="bottom_bar_home">Home</string>
+    <string name="bottom_bar_cv">CV</string>
+    <!-- End bottom bar -->
+
     <!-- Login Screen -->
     <string name="login_title">Login</string>
     <string name="login_field_username">Username</string>
@@ -40,8 +45,27 @@
     <string name="http_error_503">Bad Request</string>
     <!-- End Errors -->
 
+    <!-- Settings Screen -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_color_system">Color system</string>
+    <string name="settings_color_switch_dark_mode">Dark mode</string>
+    <string name="settings_color_switch_light_mode">Light mode</string>
+    <string name="settings_customize_colors">Customize your app color</string>
+    <string name="settings_replay_tutorial">Replay tutorial</string>
+    <string name="settings_language_label">Language</string>
+    <string name="settings_logout">Logout</string>
+    <!-- End Settings Screen -->
+
+    <!-- Home Screen -->
+    <string name="home_title">Welcome,\n%1$s</string>
+    <string name="home_add_device">Add device</string>
+    <string name="dialog_detele_device_title">Are you sure to delete this product?</string>
+    <string name="dialog_detele_device_confirm">Yes</string>
+    <string name="dialog_detele_device_dismiss">No</string>
+    <!-- End Home Screen -->
+
     <!-- Notifications -->
-    <string name="default_channel_id">1</string>
-    <string name="default_channel_name">Chat notification</string>
+    <string name="default_channel_id" translatable="false">1</string>
+    <string name="default_channel_name" translatable="false">Chat notification</string>
     <!-- End Notifications -->
 </resources>

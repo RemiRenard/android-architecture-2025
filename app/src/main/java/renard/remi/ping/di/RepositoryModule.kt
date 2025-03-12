@@ -5,8 +5,10 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import renard.remi.ping.data.repository.AuthRepositoryImpl
+import renard.remi.ping.data.repository.SettingsRepositoryImpl
 import renard.remi.ping.data.repository.UserRepositoryImpl
 import renard.remi.ping.domain.repository.AuthRepository
+import renard.remi.ping.domain.repository.SettingsRepository
 import renard.remi.ping.domain.repository.UserRepository
 import javax.inject.Singleton
 
@@ -21,4 +23,8 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindUserRepository(userRepository: UserRepositoryImpl): UserRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindSettingsRepository(settingsRepository: SettingsRepositoryImpl): SettingsRepository
 }
