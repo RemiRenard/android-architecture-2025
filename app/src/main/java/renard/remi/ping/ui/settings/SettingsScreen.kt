@@ -119,7 +119,7 @@ fun SettingsScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 24.dp)
-                        .alpha(0.9F)
+                        .alpha(0.8F)
                 ) {
                     Spacer(modifier = Modifier.size(12.dp))
                     Text(

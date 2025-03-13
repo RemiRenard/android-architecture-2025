@@ -1,5 +1,6 @@
 package renard.remi.ping.ui.component
 
+import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
@@ -22,7 +23,7 @@ import renard.remi.ping.extension.removeAllAfterSlash
 import renard.remi.ping.ui.home.HomeScreenRoute
 
 data class BottomNavigationItem(
-    val title: String,
+    @StringRes val title: Int,
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector,
     val hasNews: Boolean,
@@ -30,33 +31,35 @@ data class BottomNavigationItem(
     val route: BaseRoute
 )
 
+val bottomBarItems = listOf(
+    BottomNavigationItem(
+        title = R.string.bottom_bar_home,
+        selectedIcon = Icons.Filled.Home,
+        unselectedIcon = Icons.Outlined.Home,
+        hasNews = false,
+        route = HomeScreenRoute
+    ),
+    BottomNavigationItem(
+        title = R.string.bottom_bar_cv,
+        selectedIcon = Icons.Filled.Info,
+        unselectedIcon = Icons.Outlined.Info,
+        hasNews = false,
+        route = WebViewRoute("https://remirenard.netlify.app/")
+    )
+)
+
+/**
+ * Use this as bottomBar for Scaffold
+ */
 @Composable
-fun BottomBar(
+fun MaterialBottomBar(
     isVisible: Boolean,
     currentRoute: String,
     onTabClicked: (BottomNavigationItem) -> Unit,
 ) {
-    val items = listOf(
-        BottomNavigationItem(
-            title = stringResource(R.string.bottom_bar_home),
-            selectedIcon = Icons.Filled.Home,
-            unselectedIcon = Icons.Outlined.Home,
-            hasNews = false,
-            route = HomeScreenRoute
-
-        ),
-        BottomNavigationItem(
-            title = stringResource(R.string.bottom_bar_cv),
-            selectedIcon = Icons.Filled.Info,
-            unselectedIcon = Icons.Outlined.Info,
-            hasNews = false,
-            route = WebViewRoute("https://remirenard.netlify.app/")
-        )
-    )
-
     if (isVisible) {
         NavigationBar(Modifier.alpha(0.6F)) {
-            items.forEachIndexed { _, item ->
+            bottomBarItems.forEachIndexed { _, item ->
                 val isSelected = item.route.javaClass.name == currentRoute.removeAllAfterSlash()
                 NavigationBarItem(
                     selected = isSelected,
@@ -64,7 +67,7 @@ fun BottomBar(
                         onTabClicked.invoke(item)
                     },
                     label = {
-                        Text(text = item.title)
+                        Text(text = stringResource(item.title))
                     },
                     alwaysShowLabel = false,
                     icon = {
@@ -83,7 +86,7 @@ fun BottomBar(
                                 imageVector = if (isSelected) {
                                     item.selectedIcon
                                 } else item.unselectedIcon,
-                                contentDescription = item.title
+                                contentDescription = stringResource(item.title)
                             )
                         }
                     }

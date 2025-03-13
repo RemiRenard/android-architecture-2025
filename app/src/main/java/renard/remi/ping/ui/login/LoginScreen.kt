@@ -120,14 +120,14 @@ fun LoginScreen(
             text = stringResource(R.string.app_name),
             textAlign = TextAlign.Left
         )
-        Spacer(modifier = Modifier.fillMaxHeight(0.07F))
+        Spacer(modifier = Modifier.fillMaxHeight(0.1F))
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.BottomCenter
         ) {
             Card(
                 modifier = Modifier
-                    .alpha(0.9F)
+                    .alpha(0.8F)
                     .fillMaxHeight()
                     .verticalScroll(rememberScrollState()),
                 shape = RoundedCornerShape(
@@ -218,7 +218,9 @@ fun LoginScreen(
                 }
                 Spacer(modifier = Modifier.size(30.dp))
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp),
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Text(
@@ -230,7 +232,8 @@ fun LoginScreen(
                             withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
                                 append(stringResource(R.string.login_go_to_create_account_subtitle))
                             }
-                        }
+                        },
+                        textAlign = TextAlign.Center
                     )
                 }
                 Spacer(modifier = Modifier.size(30.dp))

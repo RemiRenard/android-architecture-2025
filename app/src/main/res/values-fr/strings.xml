@@ -10,7 +10,7 @@
     <string name="login_field_password">Mot de passe</string>
     <string name="login_field_password_error_msg">Mot de passe peu sécurisé</string>
     <string name="login_btn_text">Se connecter</string>
-    <string name="login_go_to_create_account_title">Nouveau sur Captain Blink ?</string>
+    <string name="login_go_to_create_account_title">Nouveau sur Ping?</string>
     <string name="login_go_to_create_account_subtitle">S\'inscrire</string>
     <!-- Fin Écran de connexion -->
 
@@ -25,10 +25,10 @@
     <string name="create_account_field_username_error_msg">Ne peut pas être vide</string>
     <string name="create_account_field_password">Mot de passe</string>
     <string name="create_account_field_password_error_msg">Mot de passe peu sécurisé</string>
-    <string name="create_account_field_confirm_password">Confirmer votre mot de passe</string>
+    <string name="create_account_field_confirm_password">Confirmer le mot de passe</string>
     <string name="create_account_field_confirm_field_password_error_msg">Les mots de passe ne correspondent pas</string>
     <string name="create_account_btn_text">S\'inscrire</string>
-    <string name="create_account_go_to_login_title">Vous avez déjà un compte ?</string>
+    <string name="create_account_go_to_login_title">Vous avez déjà un compte?</string>
     <string name="create_account_go_to_login_subtitle">Se connecter</string>
     <!-- Fin Écran de création de compte -->
 

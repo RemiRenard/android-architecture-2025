@@ -33,7 +33,7 @@ import kotlinx.coroutines.runBlocking
 import renard.remi.ping.R
 import renard.remi.ping.extension.dataStore
 import renard.remi.ping.extension.removeAllAfterSlash
-import renard.remi.ping.ui.component.BottomBar
+import renard.remi.ping.ui.component.CustomBottomBar
 import renard.remi.ping.ui.component.WebView
 import renard.remi.ping.ui.component.WebViewRoute
 import renard.remi.ping.ui.create_account.CreateAccountEventFromUI
@@ -78,27 +78,10 @@ class MainActivity : FragmentActivity() {
                     LoginScreenRoute.javaClass.name,
                     CreateAccountScreenRoute.javaClass.name,
                     HomeScreenRoute.javaClass.name,
-                    SettingsScreenRoute.javaClass.name,
-                    WebViewRoute::class.java.name
+                    SettingsScreenRoute.javaClass.name
                 )
 
-                Scaffold(
-                    bottomBar = {
-                        BottomBar(
-                            isVisible = routeWithBottomBar.contains(currentRoute.removeAllAfterSlash()),
-                            currentRoute = currentRoute,
-                            onTabClicked = {
-                                navController.navigate(it.route) {
-                                    popUpTo(navController.graph.startDestinationId) {
-                                        saveState = true
-                                    }
-                                    launchSingleTop = true
-                                    restoreState = true
-                                }
-                            }
-                        )
-                    }
-                ) { paddingValues ->
+                Scaffold { paddingValues ->
                     AnimatedVisibility(
                         routeWithBackground.contains(currentRoute.removeAllAfterSlash()),
                         enter = fadeIn(),
@@ -193,9 +176,6 @@ class MainActivity : FragmentActivity() {
                                         HomeEventFromUI.PermissionsPushGranted
                                     )
                                 },
-                                onSettingsClicked = {
-                                    navController.navigate(SettingsScreenRoute)
-                                },
                                 events = viewModel.events,
                                 state = viewModel.state.collectAsStateWithLifecycle()
                             )
@@ -228,6 +208,23 @@ class MainActivity : FragmentActivity() {
                             )
                         }
                     }
+                    CustomBottomBar(
+                        modifier = Modifier.padding(paddingValues),
+                        isVisible = routeWithBottomBar.contains(currentRoute.removeAllAfterSlash()),
+                        currentRoute = currentRoute,
+                        onTabClicked = {
+                            navController.navigate(it.route) {
+                                popUpTo(navController.graph.startDestinationId) {
+                                    saveState = true
+                                }
+                                launchSingleTop = true
+                                restoreState = true
+                            }
+                        },
+                        onSettingsClicked = {
+                            navController.navigate(SettingsScreenRoute)
+                        }
+                    )
                 }
             }
         }
